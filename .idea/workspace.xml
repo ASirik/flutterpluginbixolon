@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ae2092fe-9e80-4c3b-a129-8af2e63abc24" name="Default Changelist" comment="" />
+    <list default="true" id="ae2092fe-9e80-4c3b-a129-8af2e63abc24" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/FlutterpluginbixolonPlugin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/PrinterCommands.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/example/lib/testprint.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/flutterpluginbixolon.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/BarcodeFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/BixolonPrinter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/BixolonprinterPlugin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/BluetoothUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/CashDrawerFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/DirectIOFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/EtcFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/ImageFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/MsrFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/PageModeFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/PrinterConnectActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/PrinterControl/BixolonPrinter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/PrinterControl/EscapeSequence.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/ScrFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/TabPagerAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/bixolonprnt/TextFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bixolonprnt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bixolonprnt_nativ_sdk.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/bixolonprinter.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/bixolonprnt_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/flutterpluginbixolon_test.dart" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +65,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\asiri\AndroidStudioProjects\bixolon_prnt\android\src\main\java\com\bixolonprnt" />
+      <recent name="C:\Users\asiri\AndroidStudioProjects\bixolon_prnt\example\lib" />
       <recent name="C:\Users\asiri\AndroidStudioProjects\bixolon_prnt\example\android\app" />
       <recent name="C:\Users\asiri\AndroidStudioProjects\bixolon_prnt\android\libs" />
       <recent name="C:\Users\asiri\AndroidStudioProjects\bixolon_prnt\android" />

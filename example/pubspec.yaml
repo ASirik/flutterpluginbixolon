@@ -1,4 +1,4 @@
-name: bixolonprnt_example
+name: flutterpluginbixolon_example
 description: Demonstrates how to use the bixolonprnt plugin.
 
 # The following line prevents the package from being accidentally published to
@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  bixolonprnt:
+  flutterpluginbixolon:
     # When depending on this package from a real application you should use:
     #   bixolonprnt: ^x.y.z
     # See https://dart.dev/tools/pub/dependencies#version-constraints

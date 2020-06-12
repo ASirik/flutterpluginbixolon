@@ -1,4 +1,4 @@
-name: bixolonprnt
+name: flutterpluginbixolon
 description: A new Flutter plugin.
 version: 0.0.1
 author:
@@ -28,10 +28,10 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.bixolonprnt
-        pluginClass: BixolonprinterPlugin
+        package: com.flutterpluginbixolon
+        pluginClass: FlutterpluginbixolonPlugin
       ios:
-        pluginClass: BixolonprinterPlugin
+        pluginClass: FlutterpluginbixolonPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

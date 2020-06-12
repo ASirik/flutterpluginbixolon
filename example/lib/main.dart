@@ -1,47 +1,76 @@
+import 'package:flutterpluginbixolon_example/testprint.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-
+import 'package:flutterpluginbixolon/flutterpluginbixolon.dart';
 import 'package:flutter/services.dart';
-import 'package:bixolonprnt/bixolonprinter.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(new MyApp());
 
 class MyApp extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _MyAppState createState() => new _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  FlutterpluginBixolon bluetooth = FlutterpluginBixolon.instance;
+  String _printersArrayString = null;
+  List<BluetoothDevice> _devices = [];
+  BluetoothDevice _device;
+  bool _connected = false;
+  // String pathImage;
+  TestPrint testPrint;
 
   @override
   void initState() {
     super.initState();
     initPlatformState();
+    testPrint = TestPrint();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
+    bool isConnected = await bluetooth.isConnected;
+    print("connected ");
+    print(bluetooth.isConnected);
+    List<BluetoothDevice> devices = [];
     try {
-      platformVersion = await BixolonPrinter.platformVersion;
+      devices = await bluetooth.getBondedDevices();
+      print(devices);
     } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      print("no devices");
     }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    String result = await BixolonPrinter.main('SPP-R310');
-
-    setState(() {
-      _platformVersion = platformVersion;
+    bluetooth.onStateChanged().listen((state) {
+      switch (state) {
+        case FlutterpluginBixolon.CONNECTED:
+          setState(() {
+            _connected = true;
+            _printersArrayString = "Connected";
+          });
+          break;
+        case FlutterpluginBixolon.DISCONNECTED:
+          setState(() {
+            _connected = false;
+            _printersArrayString = "not Connected";
+          });
+          break;
+        default:
+          print(state);
+          break;
+      }
     });
+
+    if (!mounted) return;
+    setState(() {
+      _devices = devices;
+      _printersArrayString = "not Connected";
+    });
+
+    if (isConnected) {
+      setState(() {
+        _connected = true;
+        _printersArrayString = "Connected";
+      });
+    }
   }
 
   @override
@@ -49,20 +78,144 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: Text('Printer'),
         ),
-        body: new GestureDetector(
-            onTap: () {
-              BixolonPrinter.main('SPP-R310');
-            },
-            child: new Container(
-              width: 500.0,
-              padding: new EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 40.0),
-              color: Colors.green,
-              child: new Column(children: [
-                new Text("Ableitungen"),
-              ]),
-            )),
+        body: Container(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView(
+              children: <Widget>[
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'Device:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 30,
+                    ),
+                    Expanded(
+                      child: DropdownButton(
+                        items: _getDeviceItems(),
+                        onChanged: (value) => setState(() => _device = value),
+                        value: _device,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Text('devise is: $_printersArrayString\n')
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    RaisedButton(
+                      color: Colors.blue,
+                      onPressed: () {
+                        initPlatformState();
+                      },
+                      child: Text(
+                        'Refresh',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    RaisedButton(
+                      color: Colors.blue,
+                      onPressed: _connect,
+                      child: Text(
+                        _connected ? 'Disconnect' : 'Connect',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 10.0, right: 10.0, top: 50),
+                  child: RaisedButton(
+                    color: Colors.red,
+                    onPressed: () {
+                      testPrint.sample('hello world');
+                    },
+                    child: Text('print', style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  List<DropdownMenuItem<BluetoothDevice>> _getDeviceItems() {
+    List<DropdownMenuItem<BluetoothDevice>> items = [];
+    if (_devices.isEmpty) {
+      items.add(DropdownMenuItem(
+        child: Text('No devices'),
+      ));
+    } else {
+      _devices.forEach((device) {
+        items.add(DropdownMenuItem(
+          child: Text(device.name),
+          value: device,
+        ));
+      });
+    }
+    return items;
+  }
+
+  void _connect() {
+    if (_device == null) {
+      show('No device selected.');
+    } else {
+      bluetooth.isConnected.then((isConnected) {
+        if (!isConnected) {
+          bluetooth.connect(_device).catchError((error) {
+            setState(() {
+              _connected = false;
+              _printersArrayString = "not Connected";
+            });
+          });
+          setState(() {
+            _connected = true;
+            _printersArrayString = "Connected";
+          });
+        }
+      });
+    }
+  }
+
+  Future show(
+    String message, {
+    Duration duration: const Duration(seconds: 3),
+  }) async {
+    await new Future.delayed(new Duration(milliseconds: 100));
+    Scaffold.of(context).showSnackBar(
+      new SnackBar(
+        content: new Text(
+          message,
+          style: new TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        duration: duration,
       ),
     );
   }

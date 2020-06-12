@@ -1,9 +1,9 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:bixolonprnt/bixolonprnt.dart';
+import 'package:bixolonprinterflutter/bixolonprinterflutter.dart';
 
 void main() {
-  const MethodChannel channel = MethodChannel('bixolonprnt');
+  const MethodChannel channel = MethodChannel('bixolonprinterflutter');
 
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -18,6 +18,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await Bixolonprnt.platformVersion, '42');
+    expect(await Bixolonprinterflutter.platformVersion, '42');
   });
 }
