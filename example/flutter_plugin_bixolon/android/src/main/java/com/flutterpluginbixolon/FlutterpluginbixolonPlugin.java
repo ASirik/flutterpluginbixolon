@@ -274,7 +274,6 @@ public class FlutterpluginbixolonPlugin implements MethodCallHandler, RequestPer
           return;
         }
 
-        // Cancel bt discovery, even though we didn't start it
         mBluetoothAdapter.cancelDiscovery();
 
         try {
