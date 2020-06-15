@@ -37,9 +37,14 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 import io.flutter.plugin.common.PluginRegistry.RequestPermissionsResultListener;
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.plugin.common.MethodCall;
+import io.flutter.plugin.common.MethodChannel;
+import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
+import io.flutter.plugin.common.MethodChannel.Result;
+import io.flutter.plugin.common.PluginRegistry.Registrar;
 
-
-public class FlutterpluginbixolonPlugin implements MethodCallHandler, RequestPermissionsResultListener {
+public class FlutterpluginbixolonPlugin implements FlutterPlugin, MethodCallHandler {
 
   private static final String TAG = "FlutterpluginbixolonPlugin";
   private static final String NAMESPACE = "flutter_plugin_bixolon";
